@@ -59,8 +59,8 @@ This checks all registered daily compilers against cached data, deterministic ne
 
 ## Free hosted hobby deployment
 
-This repository includes `render.yaml` for one free Render web service. It
-builds the Vite workspace and serves it from the same Python service as the API
+This repository includes `render.yaml` and a self-contained Docker build for one
+free Render web service. It builds the Vite workspace and serves it from the same Python service as the API
 and committed `data/nse_daily/` equity files. Connect the private GitHub
 repository in Render, select the Blueprint, and deploy. No database is needed
 for the current static monthly-snapshot data model.
