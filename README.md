@@ -1,22 +1,48 @@
 # VibeBT
 
-### A visual workspace for testing Indian-market trading ideas
+### A playful home for Indian-market hunches
 
-VibeBT turns a market hunch into an explicit daily-bar backtest. Pick an NSE cash equity, combine a signal with confirmations, exits, stops and targets, then inspect the actual candles, equity path, drawdown and every trade.
+VibeBT is a fun way to play with market ideas. Pick an NSE cash equity, snap together a signal, confirmations, exits, stops and targets, then see how that idea would have travelled through actual daily candles.
 
-It is built for curious, non-technical traders who want a better question than “would this have worked?”
+It is for curious people who have a market hunch and want to poke at it visually, without needing to write code or pretend they have a trading desk.
 
-> **Market reality is the product constraint.** VibeBT shows observed daily OHLCV bars, uses next-open fills, applies costs, and refuses to substitute a different strategy when a requested rule lacks a compiler.
+> **Real data, playful exploration.** VibeBT uses observed daily OHLCV bars, next-open fills and configurable costs, so the sandbox still has a connection to the market.
+
+![VibeBT workspace showing daily candles, account equity, drawdown, strategy builder and block library](docs/vibebt-workspace.png)
+
+_One screen for selecting an instrument, building an idea and inspecting the resulting market path._
 
 ## What you can do
 
-| Explore | Build | Inspect |
+| Wander | Build | See what happened |
 | --- | --- | --- |
 | Choose an NSE cash equity and test period | Click or drag strategy blocks into a recipe | Read candle, equity and drawdown charts with hover values |
 | Browse supported indicators and risk rules | Change EMA, MACD, stop and target settings inside the active blocks | Review fills, fees, slippage, metrics and individual trades |
 | Save unfinished ideas in a scratchpad | Name, save and revisit strategies | Export the complete run and its assumptions as JSON |
 
-The chart stays central, while the builder, block library and scratchpad remain within reach.
+The chart stays central, while the builder, block library and scratchpad remain within reach. It should feel closer to a creative desk than a trading terminal.
+
+## Feature tour
+
+### Chart-first wandering
+
+The price chart uses daily candlesticks, never smoothed presentation curves. Hover a bar to see its date, OHLC values, account equity, drawdown and related trade activity. Zoom, pan and reset the viewport without changing the test.
+
+### Build an idea in plain language
+
+The recipe builder follows a simple flow: **when** a signal occurs, **confirm** it, choose the trade side, enter at the next open, then define an exit, stop and target. EMA and MACD settings, plus stop and target values, live inside their relevant blocks.
+
+### Block library and scratchpad
+
+Signals, confirmations, risks and exits are grouped in one scrollable library. Click a block or drag it into its matching recipe slot. The always-visible scratchpad holds possibilities worth returning to later.
+
+### A quick story about the run
+
+The results panel surfaces return, largest drawdown, trade count and time in market. The chart highlights the complete peak-to-trough drawdown interval, while the notes explain the result, risk and assumptions in context.
+
+### Keep and share your experiments
+
+Set commission and slippage in basis points, save named ideas locally, and export a run with its exact strategy, source metadata, metrics, bars and trades. Each result includes its data-as-of date.
 
 ## Run it locally
 
@@ -62,7 +88,7 @@ Daily high/low checks stop and target
 Equity, benchmark, drawdown and trades are recorded
 ```
 
-These rules prevent the most common accidental fantasy results:
+The sandbox has a few ground rules:
 
 - Signals are observed at the completed close and fill at the following open.
 - Slippage and commission apply on both sides of every fill.
@@ -79,7 +105,7 @@ See [BACKTEST_CONTRACT.md](BACKTEST_CONTRACT.md) for the detailed execution cont
 
 The default source is NSE's CM UDiFF Common Bhavcopy Final archive. VibeBT imports the `EQ` series only and keeps each symbol in a separate, provenance-tagged file. The visible scrip picker labels these instruments **Cash equities · NSE official**.
 
-The data is end-of-day OHLCV. Long-history results require care around splits, bonuses, dividends, liquidity and symbol changes. VibeBT preserves this limit in the run metadata instead of hiding it.
+The data is end-of-day OHLCV. Splits, bonuses, dividends, liquidity and symbol changes can affect a long-history result. VibeBT shows the data date and source alongside each run.
 
 ### Optional local broker cache
 
@@ -113,17 +139,17 @@ npm run verify
 
 This validates all registered compilers, execution rules and the production frontend build.
 
-## Project boundaries
+## A quick reality check
 
-VibeBT is research software. It currently supports one daily instrument per run. It does not provide point-in-time universes, fully corporate-action-adjusted history, tradable futures rolls, margin models, intraday execution or order routing.
+VibeBT currently works one daily instrument at a time. Point-in-time universes, fully corporate-action-adjusted history, tradable futures rolls, margin models, intraday execution and order routing are outside its current playground.
 
-Treat results as a structured way to investigate an idea. Check the source data, assumptions, liquidity, robustness and out-of-sample behaviour before acting on any result.
+Enjoy the experiments. For real decisions, take time to check the source data, assumptions, liquidity, robustness and out-of-sample behaviour.
 
 ## Contributing
 
 Contributions are welcome, especially for source adapters with clear licensing and provenance, point-in-time corporate-action handling, fully specified strategy compilers, reproducible verification cases, and accessibility improvements.
 
-Please keep the core promise intact: every visible result must trace back to actual market data and explicit execution assumptions.
+Please keep the core promise intact: every visible result should trace back to actual market data and clear execution assumptions.
 
 ## License
 
