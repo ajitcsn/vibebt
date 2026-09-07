@@ -1,40 +1,62 @@
 # VibeBT
 
-### A playful home for Indian-market hunches
+### Drag, drop and test a market hunch
 
-VibeBT is a fun way to play with market ideas. Pick an NSE cash equity, snap together a signal, confirmations, exits, stops and targets, then see how that idea would have travelled through actual daily candles.
+VibeBT is a playful visual backtester for Indian-market ideas. Pick an NSE equity, drag a few simple blocks into place, and watch that pattern play out across real daily candles.
 
-It is for curious people who have a market hunch and want to poke at it visually, without needing to write code or pretend they have a trading desk.
+There is no strategy language to learn and no formula editor to fight. You build a pattern the way you describe it: **when this happens**, **check that**, **buy or sell**, then **get out here**.
 
-> **Real data, playful exploration.** VibeBT uses observed daily OHLCV bars, next-open fills and configurable costs, so the sandbox still has a connection to the market.
+> **Simple patterns, real candles.** VibeBT runs your blocks on observed daily OHLCV data with next-open fills and configurable costs.
 
 ![VibeBT workspace showing daily candles, account equity, drawdown, strategy builder and block library](docs/vibebt-workspace.png)
 
-_One screen for selecting an instrument, building an idea and inspecting the resulting market path._
+_One screen. Pull a block from the right, drop it into a pattern, and see the result on the left._
+
+## Make a pattern in seconds
+
+```text
+Drag “RSI pullback”      →  WHEN
+Drag “Above 50 SMA”      →  CONFIRM
+Pick “Buy”               →  SIDE
+Drag “5% stop”           →  STOP
+Drag “10% target”        →  TARGET
+```
+
+The chart regenerates as you build. Change the stock or test period whenever you like, then keep the interesting combinations in the scratchpad.
 
 ## What you can do
 
-| Wander | Build | See what happened |
+| Pick a simple idea | Drag it into place | Watch the story unfold |
 | --- | --- | --- |
-| Choose an NSE cash equity and test period | Click or drag strategy blocks into a recipe | Read candle, equity and drawdown charts with hover values |
-| Browse supported indicators and risk rules | Change EMA, MACD, stop and target settings inside the active blocks | Review fills, fees, slippage, metrics and individual trades |
-| Save unfinished ideas in a scratchpad | Name, save and revisit strategies | Export the complete run and its assumptions as JSON |
+| Choose an NSE cash equity and test period | Drag or click a signal, confirmation, exit, stop or target | Read candle, equity and drawdown charts with hover values |
+| Start with familiar patterns such as EMA cross, RSI pullback or Bollinger bounce | Adjust EMA, MACD, stop and target values inside the blocks | Review fills, fees, slippage, metrics and individual trades |
+| Keep “maybe later” blocks in the scratchpad | Name and save combinations you like | Export the complete experiment as JSON |
 
 The chart stays central, while the builder, block library and scratchpad remain within reach. It should feel closer to a creative desk than a trading terminal.
 
 ## Feature tour
 
+### Drag and drop is the main interaction
+
+Every block has one job. Signals answer **when** to pay attention. Confirmations add a simple check. Stops, targets and exits shape what happens after entry. Drag a block from the library into its matching slot, or click it when you are moving quickly.
+
+The library stays open beside the pattern. The scratchpad stays below it. You never need to leave the workspace to find another ingredient.
+
+### Start with patterns you already know
+
+VibeBT is designed around small, understandable combinations: an EMA crossover with a trend filter, an RSI pullback with a target, or a Bollinger bounce with a stop. You can change the numbers inside a block, while the shape of the idea remains easy to read at a glance.
+
 ### Chart-first wandering
 
 The price chart uses daily candlesticks, never smoothed presentation curves. Hover a bar to see its date, OHLC values, account equity, drawdown and related trade activity. Zoom, pan and reset the viewport without changing the test.
 
-### Build an idea in plain language
+### Your pattern stays readable
 
-The recipe builder follows a simple flow: **when** a signal occurs, **confirm** it, choose the trade side, enter at the next open, then define an exit, stop and target. EMA and MACD settings, plus stop and target values, live inside their relevant blocks.
+The builder follows one short flow: **when** a signal occurs, **confirm** it, choose the trade side, enter at the next open, then define an exit, stop and target. EMA and MACD settings, plus stop and target values, live inside their relevant blocks.
 
-### Block library and scratchpad
+### A library for playful combinations
 
-Signals, confirmations, risks and exits are grouped in one scrollable library. Click a block or drag it into its matching recipe slot. The always-visible scratchpad holds possibilities worth returning to later.
+Signals, confirmations, risks and exits are grouped in one scrollable library. The always-visible scratchpad holds possibilities worth returning to later.
 
 ### A quick story about the run
 
@@ -113,13 +135,13 @@ If you have the companion `kite-futures-cache` project, VibeBT can also expose i
 
 Read [DATA_SOURCES.md](DATA_SOURCES.md) for source provenance and scope.
 
-## Supported daily strategy families
+## Simple patterns to play with
 
-VibeBT currently includes 20 exact daily compilers:
+VibeBT currently has 20 runnable daily pattern families. Start with the familiar ones and combine them gently:
 
 EMA crossover, MACD, RSI, Supertrend, Bollinger Bands, ATR expansion, Stochastic, ADX, CCI, Williams %R, rate of change, momentum, OBV, MFI, Donchian Channels, Keltner Channels, SMA crossover, Ichimoku, Parabolic SAR, and buy-and-hold.
 
-The block library can contain ideas beyond that list. The API returns a clear message when a chosen block has no exact compiler yet, rather than changing the rule behind the user’s back.
+The block library can hold more ideas as it grows. Each runnable pattern has a matching compiler, so the chart always reflects the blocks you chose.
 
 ## Deploy it
 
