@@ -1,0 +1,188 @@
+/* Final responsive guardrails kept separate from the compact base stylesheet. */
+.block-library { height: 100%; }
+.analysis-column,
+.builder-card,
+.blocks-list,
+.scrip-results,
+.scratchpad,
+.table-wrap,
+.drawer {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--line-strong) 70%, transparent) transparent;
+}
+.analysis-column::-webkit-scrollbar,
+.builder-card::-webkit-scrollbar,
+.blocks-list::-webkit-scrollbar,
+.scrip-results::-webkit-scrollbar,
+.scratchpad::-webkit-scrollbar,
+.table-wrap::-webkit-scrollbar,
+.drawer::-webkit-scrollbar { width: 7px; height: 7px; }
+.analysis-column::-webkit-scrollbar-thumb,
+.builder-card::-webkit-scrollbar-thumb,
+.blocks-list::-webkit-scrollbar-thumb,
+.scrip-results::-webkit-scrollbar-thumb,
+.scratchpad::-webkit-scrollbar-thumb,
+.table-wrap::-webkit-scrollbar-thumb,
+.drawer::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--line-strong) 72%, transparent);
+  background-clip: padding-box;
+}
+.analysis-column::-webkit-scrollbar-track,
+.builder-card::-webkit-scrollbar-track,
+.blocks-list::-webkit-scrollbar-track,
+.scrip-results::-webkit-scrollbar-track,
+.scratchpad::-webkit-scrollbar-track,
+.table-wrap::-webkit-scrollbar-track,
+.drawer::-webkit-scrollbar-track { background: transparent; }
+.blocks-list-wrap { position: relative; flex: 1 1 auto; min-height: 0; }
+.blocks-list-wrap .blocks-list { height: 100%; overflow-y: auto; scrollbar-gutter: stable; align-content: start; }
+.block-row { height: 44px; min-height: 44px; }
+.block-row > button:first-child { height: 42px; align-items: center; }
+.blocks-scroll-hint {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding: 16px 6px 5px;
+  background: linear-gradient(to bottom, transparent, var(--surface-2) 48%);
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .03em;
+  pointer-events: none;
+}
+.blocks-scroll-hint span { color: var(--green); font-size: 13px; line-height: 8px; }
+.blocks-list-wrap.at-end .blocks-scroll-hint { opacity: 0; }
+
+.tone-when { --stage: var(--green); }
+.tone-confirm { --stage: var(--blue); }
+.tone-side { --stage: #8f7cdb; }
+.tone-enter { --stage: var(--yellow); }
+.tone-exit { --stage: #d38b4b; }
+.tone-stop { --stage: var(--red); }
+.tone-target { --stage: #48ad93; }
+.recipe-card[class*="tone-"] .recipe-slot,
+.recipe-card[class*="tone-"] .fixed-rule {
+  border-color: color-mix(in srgb, var(--stage) 42%, var(--line));
+}
+.recipe-card[class*="tone-"] .recipe-slot i {
+  color: var(--stage);
+  background: color-mix(in srgb, var(--stage) 12%, var(--surface-3));
+}
+.recipe-card[class*="tone-"] .recipe-slot:hover,
+.recipe-card[class*="tone-"] .recipe-slot.selected {
+  border-color: var(--stage);
+  background: color-mix(in srgb, var(--stage) 9%, var(--surface-2));
+}
+.tone-enter .fixed-rule strong { color: var(--stage); }
+.tone-side .segmented button.active {
+  border-color: var(--stage);
+  background: color-mix(in srgb, var(--stage) 12%, var(--surface));
+}
+
+.block-filter i { color: var(--blue); }
+.block-stop i { color: var(--red); }
+.block-target i { color: #48ad93; }
+.block-exit i { color: #d38b4b; }
+
+.recipe-slot.recipe-slot-editable {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 5px;
+  padding: 0;
+  overflow: hidden;
+}
+.recipe-slot-editable .slot-select {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  gap: 7px;
+  padding: 7px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+.recipe-slot-editable .slot-select > span { min-width: 0; display: grid; gap: 1px; }
+.recipe-slot-editable .slot-select > b { margin-left: auto; color: var(--muted); }
+.inline-periods {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  padding: 0 7px 7px;
+}
+.inline-periods label,
+.inline-risk {
+  color: var(--muted);
+  font-size: 8px;
+}
+.inline-periods label { display: grid; gap: 3px; }
+.inline-periods input,
+.inline-risk input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 4px;
+  font-size: 10px;
+}
+.inline-risk {
+  display: grid;
+  grid-template-columns: 1fr 54px auto;
+  align-items: center;
+  gap: 4px;
+  padding: 0 7px 7px;
+}
+.inline-risk em { color: var(--soft); font-size: 8px; font-style: normal; white-space: nowrap; }
+
+.protection-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.protection-controls label {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 54px auto;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 7px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 9px;
+}
+.protection-controls input {
+  width: 54px;
+  min-width: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 4px;
+  font-size: 10px;
+}
+.protection-controls span { font-size: 8px; white-space: nowrap; }
+
+@media (max-width: 520px) {
+  .protection-controls { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+  .metrics-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .metric-card { min-width: 0; }
+  .metric-card strong { font-size: 17px; }
+  .top-actions { gap: 1px; }
+  .top-button { padding: 6px 5px; font-size: 10px; }
+  .theme-button { padding: 5px 7px; }
+}

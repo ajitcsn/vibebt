@@ -1,0 +1,22 @@
+{
+  "name": "vibebt",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "data": "sh scripts/run_bridge.sh",
+    "data:login": "sh scripts/run_cache_fetch.sh --login",
+    "data:refresh": "sh scripts/run_cache_fetch.sh --plan daily-update",
+    "data:nse": "sh scripts/run_bridge_python.sh scripts/import_nse_bhavcopy.py",
+    "ingest:public": "sh scripts/run_with_cache_python.sh scripts/ingest_public_market_data.py",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "verify:engine": "sh scripts/run_with_cache_python.sh scripts/verify_daily_backtester.py",
+    "verify:rules": "sh scripts/run_with_cache_python.sh scripts/verify_engine_rules.py",
+    "verify": "npm run verify:engine && npm run verify:rules && npm run build"
+  },
+  "devDependencies": {
+    "vite": "^6.1.0"
+  }
+}

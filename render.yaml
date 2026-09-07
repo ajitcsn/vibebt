@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: vibebt
+    runtime: python
+    plan: free
+    buildCommand: npm ci && npm run build && pip install -r requirements.txt
+    startCommand: python scripts/kite_bridge.py
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: VIBEBT_HOST
+        value: 0.0.0.0
+      - key: VIBEBT_MAX_CONCURRENT_RUNS
+        value: "2"
+      - key: VIBEBT_MAX_REQUESTS_PER_MINUTE
+        value: "30"
